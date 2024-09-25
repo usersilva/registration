@@ -1,0 +1,64 @@
+﻿@{
+  ViewBag.Title = "CompaniesView";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация</title>
+  <link rel="stylesheet" href="~/Content/styles.css">
+</head>
+<body>
+  <div class="registration-container">
+    <!-- Индикатор стадий регистрации -->
+    <div class="progress-bar">
+      <div class="step active">Общая информация</div>
+      <div class="step">Контактная информация</div>
+      <div class="step">Информация о руководителе</div>
+      <div class="step">Подтверждение эл. почты</div>
+    </div>
+
+    <h2>Регистрация</h2>
+
+    <form action="#" method="post" class="registration-form">
+      <!-- УНП -->
+      <label for="unp">УНП</label>
+      <input type="text" id="unp" name="unp" placeholder="Введите УНП">
+
+      <!-- Полное наименование -->
+      <label for="full_name">Полное наименование</label>
+      <input type="text" id="full_name" name="full_name" placeholder="Введите полное наименование">
+
+      <!-- Сокращенное наименование -->
+      <label for="short_name">Сокращенное наименование</label>
+      <input type="text" id="short_name" name="short_name" placeholder="Введите сокращенное наименование">
+
+      <!-- Вид деятельности -->
+      <label for="activity_type">Вид деятельности</label>
+      <input type="text" id="activity_type" name="activity_type" placeholder="Например, продажа автозапчастей">
+
+      <!-- Форма собственности -->
+      <label>Форма собственности</label>
+      <div class="radio-group">
+        <input type="radio" id="individual" name="ownership_type" value="individual">
+        <label for="individual">Индивидуальный предприниматель</label><br>
+
+        <input type="radio" id="legal" name="ownership_type" value="legal">
+        <label for="legal">Юридическое лицо</label><br>
+
+        <input type="radio" id="self_employed" name="ownership_type" value="self_employed">
+        <label for="self_employed">Самозанятый</label>
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="cancel-btn">Отмена</button>
+        <button type="submit" class="submit-btn">Далее</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+
+

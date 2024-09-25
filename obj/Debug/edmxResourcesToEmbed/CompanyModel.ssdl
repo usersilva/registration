@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CompaniesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="id_address" />
+    </Key>
+    <Property Name="id_address" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="is_legal" Type="bit" Nullable="false" />
+    <Property Name="postal_code" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="region" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="city" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="street" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="house" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="room" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BankDetails">
+    <Key>
+      <PropertyRef Name="id_bank" />
+    </Key>
+    <Property Name="id_bank" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bank_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="iban" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChiefAccountant">
+    <Key>
+      <PropertyRef Name="id_accountant" />
+    </Key>
+    <Property Name="id_accountant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="last_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="patronymic" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="mobile_phone" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="id_company" />
+    </Key>
+    <Property Name="id_company" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="full_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="short_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="activity_type" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="registration_date" Type="datetime" />
+    <Property Name="payer_account_number" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="id_director" Type="int" Nullable="false" />
+    <Property Name="id_ownership_type" Type="int" Nullable="false" />
+    <Property Name="id_accountant" Type="int" Nullable="false" />
+    <Property Name="id_address" Type="int" Nullable="false" />
+    <Property Name="id_bank" Type="int" Nullable="false" />
+    <Property Name="id_contact" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactInfo">
+    <Key>
+      <PropertyRef Name="id_contact" />
+    </Key>
+    <Property Name="id_contact" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="phone_number" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Director">
+    <Key>
+      <PropertyRef Name="id_director" />
+    </Key>
+    <Property Name="id_director" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="last_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="patronymic" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="mobile_phone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="position" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="document" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OwnershipType">
+    <Key>
+      <PropertyRef Name="id_ownership_type" />
+    </Key>
+    <Property Name="id_ownership_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__Company__id_acco__44FF419A">
+    <End Role="ChiefAccountant" Type="Self.ChiefAccountant" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChiefAccountant">
+        <PropertyRef Name="id_accountant" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_accountant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_addr__45F365D3">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="id_address" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_address" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_bank__46E78A0C">
+    <End Role="BankDetails" Type="Self.BankDetails" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankDetails">
+        <PropertyRef Name="id_bank" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_bank" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_cont__47DBAE45">
+    <End Role="ContactInfo" Type="Self.ContactInfo" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactInfo">
+        <PropertyRef Name="id_contact" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_contact" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_dire__4316F928">
+    <End Role="Director" Type="Self.Director" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Director">
+        <PropertyRef Name="id_director" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_director" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_owne__440B1D61">
+    <End Role="OwnershipType" Type="Self.OwnershipType" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OwnershipType">
+        <PropertyRef Name="id_ownership_type" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_ownership_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище CompaniesModelContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankDetails" EntityType="Self.BankDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiefAccountant" EntityType="Self.ChiefAccountant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactInfo" EntityType="Self.ContactInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OwnershipType" EntityType="Self.OwnershipType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Company__id_acco__44FF419A" Association="Self.FK__Company__id_acco__44FF419A">
+      <End Role="ChiefAccountant" EntitySet="ChiefAccountant" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_addr__45F365D3" Association="Self.FK__Company__id_addr__45F365D3">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_bank__46E78A0C" Association="Self.FK__Company__id_bank__46E78A0C">
+      <End Role="BankDetails" EntitySet="BankDetails" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_cont__47DBAE45" Association="Self.FK__Company__id_cont__47DBAE45">
+      <End Role="ContactInfo" EntitySet="ContactInfo" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_dire__4316F928" Association="Self.FK__Company__id_dire__4316F928">
+      <End Role="Director" EntitySet="Director" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_owne__440B1D61" Association="Self.FK__Company__id_owne__440B1D61">
+      <End Role="OwnershipType" EntitySet="OwnershipType" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

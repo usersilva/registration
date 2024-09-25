@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CompaniesModelContainer" CdmEntityContainer="CompaniesEntities">
+    <EntitySetMapping Name="Address">
+      <EntityTypeMapping TypeName="CompaniesModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="id_address" ColumnName="id_address" />
+          <ScalarProperty Name="is_legal" ColumnName="is_legal" />
+          <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="house" ColumnName="house" />
+          <ScalarProperty Name="room" ColumnName="room" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankDetails">
+      <EntityTypeMapping TypeName="CompaniesModel.BankDetails">
+        <MappingFragment StoreEntitySet="BankDetails">
+          <ScalarProperty Name="id_bank" ColumnName="id_bank" />
+          <ScalarProperty Name="bank_name" ColumnName="bank_name" />
+          <ScalarProperty Name="iban" ColumnName="iban" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiefAccountant">
+      <EntityTypeMapping TypeName="CompaniesModel.ChiefAccountant">
+        <MappingFragment StoreEntitySet="ChiefAccountant">
+          <ScalarProperty Name="id_accountant" ColumnName="id_accountant" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+          <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company">
+      <EntityTypeMapping TypeName="CompaniesModel.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="id_company" ColumnName="id_company" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="short_name" ColumnName="short_name" />
+          <ScalarProperty Name="activity_type" ColumnName="activity_type" />
+          <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+          <ScalarProperty Name="payer_account_number" ColumnName="payer_account_number" />
+          <ScalarProperty Name="id_director" ColumnName="id_director" />
+          <ScalarProperty Name="id_ownership_type" ColumnName="id_ownership_type" />
+          <ScalarProperty Name="id_accountant" ColumnName="id_accountant" />
+          <ScalarProperty Name="id_address" ColumnName="id_address" />
+          <ScalarProperty Name="id_bank" ColumnName="id_bank" />
+          <ScalarProperty Name="id_contact" ColumnName="id_contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactInfo">
+      <EntityTypeMapping TypeName="CompaniesModel.ContactInfo">
+        <MappingFragment StoreEntitySet="ContactInfo">
+          <ScalarProperty Name="id_contact" ColumnName="id_contact" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Director">
+      <EntityTypeMapping TypeName="CompaniesModel.Director">
+        <MappingFragment StoreEntitySet="Director">
+          <ScalarProperty Name="id_director" ColumnName="id_director" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="patronymic" ColumnName="patronymic" />
+          <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="document" ColumnName="document" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OwnershipType">
+      <EntityTypeMapping TypeName="CompaniesModel.OwnershipType">
+        <MappingFragment StoreEntitySet="OwnershipType">
+          <ScalarProperty Name="id_ownership_type" ColumnName="id_ownership_type" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="CompaniesModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище CompaniesModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище CompaniesModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище CompaniesModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище CompaniesModel.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CompaniesModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище CompaniesModel.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CompaniesModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище CompaniesModel.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище CompaniesModel.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

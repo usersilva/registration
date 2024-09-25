@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CompaniesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="id_address" />
+    </Key>
+    <Property Name="id_address" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="is_legal" Type="Boolean" Nullable="false" />
+    <Property Name="postal_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="region" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="street" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="house" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="room" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK__Company__id_addr__45F365D3" FromRole="Address" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="BankDetails">
+    <Key>
+      <PropertyRef Name="id_bank" />
+    </Key>
+    <Property Name="id_bank" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bank_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="iban" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK__Company__id_bank__46E78A0C" FromRole="BankDetails" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="ChiefAccountant">
+    <Key>
+      <PropertyRef Name="id_accountant" />
+    </Key>
+    <Property Name="id_accountant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="last_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK__Company__id_acco__44FF419A" FromRole="ChiefAccountant" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="id_company" />
+    </Key>
+    <Property Name="id_company" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="short_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activity_type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="registration_date" Type="DateTime" Precision="3" />
+    <Property Name="payer_account_number" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_director" Type="Int32" Nullable="false" />
+    <Property Name="id_ownership_type" Type="Int32" Nullable="false" />
+    <Property Name="id_accountant" Type="Int32" Nullable="false" />
+    <Property Name="id_address" Type="Int32" Nullable="false" />
+    <Property Name="id_bank" Type="Int32" Nullable="false" />
+    <Property Name="id_contact" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="Self.FK__Company__id_addr__45F365D3" FromRole="Company" ToRole="Address" />
+    <NavigationProperty Name="BankDetails" Relationship="Self.FK__Company__id_bank__46E78A0C" FromRole="Company" ToRole="BankDetails" />
+    <NavigationProperty Name="ChiefAccountant" Relationship="Self.FK__Company__id_acco__44FF419A" FromRole="Company" ToRole="ChiefAccountant" />
+    <NavigationProperty Name="ContactInfo" Relationship="Self.FK__Company__id_cont__47DBAE45" FromRole="Company" ToRole="ContactInfo" />
+    <NavigationProperty Name="Director" Relationship="Self.FK__Company__id_dire__4316F928" FromRole="Company" ToRole="Director" />
+    <NavigationProperty Name="OwnershipType" Relationship="Self.FK__Company__id_owne__440B1D61" FromRole="Company" ToRole="OwnershipType" />
+  </EntityType>
+  <EntityType Name="ContactInfo">
+    <Key>
+      <PropertyRef Name="id_contact" />
+    </Key>
+    <Property Name="id_contact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK__Company__id_cont__47DBAE45" FromRole="ContactInfo" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="Director">
+    <Key>
+      <PropertyRef Name="id_director" />
+    </Key>
+    <Property Name="id_director" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="last_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="patronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="position" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="document" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK__Company__id_dire__4316F928" FromRole="Director" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="OwnershipType">
+    <Key>
+      <PropertyRef Name="id_ownership_type" />
+    </Key>
+    <Property Name="id_ownership_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Company" Relationship="Self.FK__Company__id_owne__440B1D61" FromRole="OwnershipType" ToRole="Company" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Company__id_addr__45F365D3">
+    <End Role="Address" Type="Self.Address" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Address">
+        <PropertyRef Name="id_address" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_address" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_bank__46E78A0C">
+    <End Role="BankDetails" Type="Self.BankDetails" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankDetails">
+        <PropertyRef Name="id_bank" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_bank" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_acco__44FF419A">
+    <End Role="ChiefAccountant" Type="Self.ChiefAccountant" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChiefAccountant">
+        <PropertyRef Name="id_accountant" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_accountant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_cont__47DBAE45">
+    <End Role="ContactInfo" Type="Self.ContactInfo" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContactInfo">
+        <PropertyRef Name="id_contact" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_contact" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_dire__4316F928">
+    <End Role="Director" Type="Self.Director" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Director">
+        <PropertyRef Name="id_director" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_director" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Company__id_owne__440B1D61">
+    <End Role="OwnershipType" Type="Self.OwnershipType" Multiplicity="1" />
+    <End Role="Company" Type="Self.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OwnershipType">
+        <PropertyRef Name="id_ownership_type" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="id_ownership_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CompaniesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Address" EntityType="Self.Address" />
+    <EntitySet Name="BankDetails" EntityType="Self.BankDetails" />
+    <EntitySet Name="ChiefAccountant" EntityType="Self.ChiefAccountant" />
+    <EntitySet Name="Company" EntityType="Self.Company" />
+    <EntitySet Name="ContactInfo" EntityType="Self.ContactInfo" />
+    <EntitySet Name="Director" EntityType="Self.Director" />
+    <EntitySet Name="OwnershipType" EntityType="Self.OwnershipType" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK__Company__id_addr__45F365D3" Association="Self.FK__Company__id_addr__45F365D3">
+      <End Role="Address" EntitySet="Address" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_bank__46E78A0C" Association="Self.FK__Company__id_bank__46E78A0C">
+      <End Role="BankDetails" EntitySet="BankDetails" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_acco__44FF419A" Association="Self.FK__Company__id_acco__44FF419A">
+      <End Role="ChiefAccountant" EntitySet="ChiefAccountant" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_cont__47DBAE45" Association="Self.FK__Company__id_cont__47DBAE45">
+      <End Role="ContactInfo" EntitySet="ContactInfo" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_dire__4316F928" Association="Self.FK__Company__id_dire__4316F928">
+      <End Role="Director" EntitySet="Director" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Company__id_owne__440B1D61" Association="Self.FK__Company__id_owne__440B1D61">
+      <End Role="OwnershipType" EntitySet="OwnershipType" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CompaniesModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CompaniesModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
