@@ -299,3 +299,4 @@ D:\regtest\regtest\obj\Debug\regtest.csproj.CoreCompileInputs.cache
 D:\regtest\regtest\obj\Debug\regtest.csproj.CopyComplete
 D:\regtest\regtest\obj\Debug\regtest.dll
 D:\regtest\regtest\obj\Debug\regtest.pdb
+D:\regtest\regtest\obj\Debug\regtest.csproj.AssemblyReference.cache

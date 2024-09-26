@@ -17,37 +17,40 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Центрируем содержимое */
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  margin: 20px 0; /* Добавляем отступы сверху и снизу */
   color: #333;
+  text-align: center; /* Центрируем содержимое */
+  font-size: 41px;
 }
 
 /* Стили для прогресс-бара */
 .progress-bar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   position: relative;
-  counter-reset: step;
+  width: 100%;
+  margin-bottom: 80px;
+  margin-top: 80px;
 }
 
 .step {
   text-align: center;
-  width: 100%;
+  flex-grow: 1; /* Растягиваем шаги по горизонтали */
   font-size: 12px;
   position: relative;
   color: #999;
 }
 
   .step::before {
-    content: counter(step);
-    counter-increment: step;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    content: '';
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
     border: 2px solid #999;
     display: block;
     text-align: center;
@@ -57,8 +60,8 @@ h2 {
   }
 
   .step.active::before {
-    background-color: #007bff;
-    color: white;
+    background-color: white;
+    color: #007bff;
     border-color: #007bff;
   }
 
@@ -68,9 +71,13 @@ h2 {
     width: 100%;
     height: 2px;
     background-color: #ccc;
-    top: 15px;
-    left: -50%;
+    top: 6px;
+    left: -47%;
     z-index: -1;
+  }
+
+  .step:last-child:after {
+    left: -51%;
   }
 
   .step:first-child::after {
@@ -78,29 +85,48 @@ h2 {
   }
 
   .step.active + .step::after {
-    background-color: #007bff;
+    background-color: #ccc;
   }
 
-.registration-form label {
+.step-text {
   display: block;
-  font-size: 14px;
-  margin-bottom: 8px;
-  color: #333;
+  margin-bottom: 0px; /* Расстояние между текстом и кружком */
+  font-size: 12px;
+  color: #999;
 }
 
-.registration-form input[type="text"],
-.registration-form input[type="email"],
-.registration-form input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
+/* Центрирование формы */
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрируем содержимое формы по горизонтали */
 }
+
+  .registration-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+    text-align: left;
+    width: 100%; /* Занимаем всю ширину формы */
+  }
+
+  .registration-form input[type="text"],
+  .registration-form input[type="email"],
+  .registration-form input[type="password"] {
+    width: 100%;
+    max-width: 300px; /* Ограничиваем ширину полей ввода */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
 
 .radio-group {
   margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
 }
 
   .radio-group input {
@@ -115,6 +141,8 @@ h2 {
 .buttons {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
 }
 
 .cancel-btn,
